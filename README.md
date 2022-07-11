@@ -12,8 +12,7 @@ Copy the environment file: `cp .env.example .env`
 
 ```bash
 ./vendor/bin/sail up
-./vendor/bin/sail artisan migrate
-./vendor/bin/sail artisan db:seed
+./vendor/bin/sail artisan migrate --seed
 ```
 
 The application may be accessed via your browser at [http://localhost](http://localhost)
