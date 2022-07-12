@@ -16,7 +16,7 @@ class Color extends Model
     protected $fillable = ['name'];
 
     /**
-     * Get cars a color can belong to
+     * Get cars a color can can belong to
      *
      * @return BelongsToMany
      */

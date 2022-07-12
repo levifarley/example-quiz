@@ -5,12 +5,11 @@ use App\Models\Color;
 use App\Models\Manufacturer;
 
 beforeEach(function () {
-    Car::query()->delete();
     // Set test parameters
     $this->manufacturerName = 'Chevrolet';
     $this->carModelName = 'Colorado';
     $this->manufacturerTag = 'domestic';
-    $this->color = 'Black';
+    $this->colorName = 'Black';
 
     // Create test model
     Car::factory()
@@ -19,9 +18,9 @@ beforeEach(function () {
             'tag' => $this->manufacturerTag
         ]))
         ->has(Color::factory()->state([
-            'name' => $this->color
+            'name' => $this->colorName
         ]))
-        ->createOne([
+        ->create([
             'model' => $this->carModelName
         ]);
 });
@@ -33,7 +32,7 @@ it('belongs to a manufacturer', function () {
 
 it('can have many colors', function () {
     // Test many-to-many relationship
-    $this->assertEquals($this->color, Car::all()->last()->colors->last()->name);
+    $this->assertEquals($this->colorName, Car::all()->last()->colors->last()->name);
 });
 
 
