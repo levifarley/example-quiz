@@ -41,8 +41,6 @@ class ManufacturerFactory extends Factory
             ],
         ];
 
-        return fake()
-            ->unique()
-            ->randomElement($manufacturers);
+        return fake()->unique()->randomElement($manufacturers);
     }
 }

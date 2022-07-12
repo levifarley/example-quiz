@@ -12,29 +12,29 @@ use Illuminate\Support\Facades\Log;
 class CarQuizService implements QuizServiceInterface
 {
     /**
-     * Build the required data for a quiz
+     * Build the required data for a quiz to be displayed
      *
      * @return Collection
      */
     public function buildDataForDisplay(): Collection
     {
-        // TODO: Build quiz options for display: Available manufacturers => Manufacturer's cars => Available colors => Submit Quiz => Thank you
+        // Available manufacturers => Manufacturer's cars => Available colors => Submit Quiz => Thank you
        return collect('data');
     }
 
     /**
      * Submit quiz results
      *
-     * @param array $input
+     * @param Collection $input
      * @return mixed
      */
-    public function handleSubmission(array $input): Mixed
+    public function handleSubmission(Collection $input): mixed
     {
         // Log submission
-        Log::info('New car quiz submission', $input);
+        Log::info('New car quiz submission', $input->toArray());
 
         // Save to database
-        return CarQuizSubmission::create([$input]);
+        return CarQuizSubmission::create($input); // TODO: dd($result)
     }
 
 }

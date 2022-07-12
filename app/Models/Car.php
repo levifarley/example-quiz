@@ -20,15 +20,6 @@ class Car extends Model
     ];
 
     /**
-     * @param string $string
-     * @return mixed
-     */
-    public static function pluck(string $string): mixed
-    {
-        return self::pluck($string);
-    }
-
-    /**
      * Get a car's manufacturer
      *
      * @return BelongsTo
@@ -51,7 +42,26 @@ class Car extends Model
     {
         return $this->belongsToMany(
             Color::class,
-            CarQuizSubmission::class
+            CarQuizSubmission::class,
+            'car_id',
+            'color_id',
+            'id',
+            'id',
+            'cars'
+        );
+    }
+
+    /**
+     * Get quiz submissions a car can belong to
+     *
+     * @return BelongsTo
+     */
+    public function submissions(): belongsTo
+    {
+        return $this->belongsTo(
+            CarQuizSubmission::class,
+            'car_id',
+            'id'
         );
     }
 }

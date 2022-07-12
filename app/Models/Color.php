@@ -6,6 +6,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -16,15 +17,6 @@ class Color extends Model
     protected $fillable = ['name'];
 
     /**
-     * @param string $string
-     * @return mixed
-     */
-    public static function pluck(string $string): mixed
-    {
-        return self::pluck($string);
-    }
-
-    /**
      * Get cars a color can belong to
      *
      * @return BelongsToMany
@@ -33,7 +25,26 @@ class Color extends Model
     {
         return $this->belongsToMany(
             Car::class,
-            CarQuizSubmission::class
+            CarQuizSubmission::class,
+            'color_id',
+            'car_id',
+            'id',
+            'id',
+            'colors'
+        );
+    }
+
+    /**
+     * Get quiz submissions a color can belong to
+     *
+     * @return BelongsTo
+     */
+    public function submissions(): BelongsTo
+    {
+        return $this->belongsTo(
+            CarQuizSubmission::class,
+            'color_id',
+            'id'
         );
     }
 }

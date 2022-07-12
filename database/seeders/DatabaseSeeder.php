@@ -20,6 +20,7 @@ class DatabaseSeeder extends Seeder
             ManufacturerSeeder::class,
             CarSeeder::class,
             ColorSeeder::class,
+            CarQuizSubmissionSeeder::class
         ];
 
         // Populate required example data

@@ -19,15 +19,6 @@ class Manufacturer extends Model
     ];
 
     /**
-     * @param string $string
-     * @return mixed
-     */
-    public static function pluck(string $string): mixed
-    {
-        return self::pluck($string);
-    }
-
-    /**
      * Get a manufacturer's cars
      *
      * @return HasMany

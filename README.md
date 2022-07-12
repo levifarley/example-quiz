@@ -24,7 +24,6 @@ User selects Manufacturer -> Car model -> Color -> (submit) => Thank you message
 
 The quiz submission sends POST request via ajax to /api/submit route that uses the appropriate service to handle the submission
 
-
 ## Pest
 `./vendor/bin sail bin pest --coverage`
 

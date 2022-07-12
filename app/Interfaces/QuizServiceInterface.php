@@ -12,5 +12,5 @@ interface QuizServiceInterface
     public function buildDataForDisplay(): Collection;
 
     // Handle quiz submissions
-    public function handleSubmission(array $input);
+    public function handleSubmission(Collection $input): mixed;
 }
