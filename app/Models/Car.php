@@ -50,18 +50,4 @@ class Car extends Model
             'cars'
         );
     }
-
-    /**
-     * Get quiz submissions a car can belong to
-     *
-     * @return BelongsTo
-     */
-    public function submissions(): belongsTo
-    {
-        return $this->belongsTo(
-            CarQuizSubmission::class,
-            'car_id',
-            'id'
-        );
-    }
 }

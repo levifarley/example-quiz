@@ -1,18 +1,39 @@
 <?php
 
 use App\Models\Car;
+use App\Models\Color;
 use App\Models\Manufacturer;
 
-it('has car page', function () {
-    // Test one-to-many relationship
+beforeEach(function () {
+    Car::query()->delete();
+    // Set test parameters
+    $this->manufacturerName = 'Chevrolet';
+    $this->carModelName = 'Colorado';
+    $this->manufacturerTag = 'domestic';
+    $this->color = 'Black';
+
+    // Create test model
     Car::factory()
         ->for(Manufacturer::factory()->state([
-            'name' => 'Nissan',
-            'tag' => 'import'
+            'name' => $this->manufacturerName,
+            'tag' => $this->manufacturerTag
         ]))
-        ->create([
-            'model' => 'Skyline'
+        ->has(Color::factory()->state([
+            'name' => $this->color
+        ]))
+        ->createOne([
+            'model' => $this->carModelName
         ]);
-
-    $this->assertEquals('Nissan', Car::find(1)->manufacturer()->first()->name);
 });
+
+it('belongs to a manufacturer', function () {
+    // Test one-to-many relationship
+    $this->assertEquals($this->manufacturerName, Car::all()->last()->manufacturer->name);
+});
+
+it('can have many colors', function () {
+    // Test many-to-many relationship
+    $this->assertEquals($this->color, Car::all()->last()->colors->last()->name);
+});
+
+
