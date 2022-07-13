@@ -21,7 +21,9 @@ beforeEach(function () {
                 ->state([
                     'model' => $this->carModelName
         ]))
-        ->create(['name' => $this->colorName]);
+        ->create([
+            'name' => $this->colorName
+        ]);
 });
 
 it('gets all cars a color can belong to', function () {
