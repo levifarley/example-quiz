@@ -14,20 +14,21 @@ beforeEach(function () {
     // Create test model
     Color::factory()
         ->has(Car::factory()
-                ->for(Manufacturer::factory()->state([
-                    'name' => $this->manufacturerName,
-                    'tag' => $this->manufacturerTag
-                ]))
-                ->state([
-                    'model' => $this->carModelName
-        ]))
+            ->for(Manufacturer::factory()->state([
+                'name' => $this->manufacturerName,
+                'tag' => $this->manufacturerTag
+            ]))
+            ->state([
+                'model' => $this->carModelName
+            ])
+        )
         ->create([
             'name' => $this->colorName
         ]);
 });
 
-it('gets all cars a color can belong to', function () {
-    // Test one-to-many relationship
+it('get cars that can be in a color', function () {
+    // Test many-to-many relationship
     $this->assertEquals($this->carModelName, Color::all()->last()->cars->last()->model);
 });
 

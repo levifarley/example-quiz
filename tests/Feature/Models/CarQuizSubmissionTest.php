@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Car;
+use App\Models\CarQuizSubmission;
 use App\Models\Color;
 use App\Models\Manufacturer;
 
@@ -13,24 +14,27 @@ beforeEach(function () {
 
     // Create test model
     Car::factory()
+        ->hasAttached(Color::factory()->state([
+            'name' => $this->colorName
+        ]))
         ->for(Manufacturer::factory()->state([
             'name' => $this->manufacturerName,
             'tag' => $this->manufacturerTag
         ]))
-        ->has(Color::factory()->state([
-            'name' => $this->colorName
-        ]))
-        ->create([
+        ->state([
             'model' => $this->carModelName
-        ]);
+        ])
+        ->create();
+
 });
 
-it('belongs to a manufacturer', function () {
+it('has a selected car', function () {
     // Test one-to-many relationship
-    $this->assertEquals($this->manufacturerName, Car::all()->last()->manufacturer->name);
+    $this->assertEquals($this->carModelName, CarQuizSubmission::all()->last()->car->model);
 });
 
-it('can have many colors', function () {
+it('has a selected color', function () {
     // Test many-to-many relationship
-    $this->assertEquals($this->colorName, Car::all()->last()->colors->last()->name);
+    $this->assertEquals($this->colorName, CarQuizSubmission::all()->last()->color->name);
 });
+

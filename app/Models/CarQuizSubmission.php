@@ -28,8 +28,8 @@ class CarQuizSubmission extends Model
     {
         return $this->hasOne(
             Car::class,
-            'car_id',
             'id',
+            'car_id',
         );
     }
 
@@ -42,8 +42,8 @@ class CarQuizSubmission extends Model
     {
         return $this->hasOne(
             Color::class,
-            'color_id',
-            'id'
+            'id',
+            'color_id'
         );
     }
 
@@ -54,7 +54,7 @@ class CarQuizSubmission extends Model
 
     public function getMostPopularCar()
     {
-        return $this->car()->groupBy('model')->count('car_id'); // TODO:
+        // TODO:
     }
 
     public function getMostPopularColor()
