@@ -5,12 +5,17 @@ declare(strict_types=1);
 namespace App\Services;
 
 use App\Interfaces\QuizServiceInterface;
-use App\Models\CarQuizSubmission;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Log;
 
 class CarQuizService implements QuizServiceInterface
 {
+    /**
+     * @param Model $carQuizSubmissions
+     */
+    public function __construct(protected Model $carQuizSubmissions) {}
+
     /**
      * Build the required data for a quiz to be displayed
      *
@@ -25,16 +30,16 @@ class CarQuizService implements QuizServiceInterface
     /**
      * Submit quiz results
      *
-     * @param Collection $input
+     * @param array $input
      * @return mixed
      */
-    public function handleSubmission(Collection $input): mixed
+    public function handleSubmission(array $input): mixed
     {
         // Log submission
-        Log::info('New car quiz submission', $input->toArray());
+        Log::info('New car quiz submission', $input);
 
-        // Save to database
-        return CarQuizSubmission::create($input); // TODO: dd($result)
+        // TODO: Save to database
+        return collect();
     }
 
 }

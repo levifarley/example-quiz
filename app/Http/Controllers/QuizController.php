@@ -13,6 +13,9 @@ use Illuminate\Http\Response;
 
 class QuizController extends Controller
 {
+    /**
+     * @param QuizServiceInterface $quizService
+     */
     public function __construct(protected QuizServiceInterface $quizService) {}
 
     /**
@@ -33,8 +36,15 @@ class QuizController extends Controller
      */
     public function submit(Request $request): Response
     {
+        // TODO: Use custom form requests for multiple quiz types?
+        $validatedData = $request->validate([
+            'car_id' => 'required|integer',
+            'color_id' => 'required|integer'
+        ]);
+
         // TODO: Broadcast model event and send result back to the front-end after submission is processed
-        return ProcessQuizSubmission::dispatch($request); // fires off CarQuizService->handleSubmission($request->collect());
-        //return response()->isSuccessful(); // TODO: Return job response instead?
+        ProcessQuizSubmission::dispatch($validatedData); // For now just process immediately
+
+        return response('Accepted', 202);
     }
 }

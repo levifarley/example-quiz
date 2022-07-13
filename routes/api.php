@@ -15,6 +15,6 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::controller(QuizController::class)->group(function () {
-    Route::post('/submit', 'submit')->name('submit'); // TODO: Input validation
+    Route::post('/submit', 'submit')->name('submit');
 });
 

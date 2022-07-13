@@ -8,9 +8,19 @@ use Illuminate\Support\Collection;
 
 interface QuizServiceInterface
 {
-    // Build data required for quiz
+    /**
+     * Build data required for quiz
+     *
+     * @return Collection
+     */
     public function buildDataForDisplay(): Collection;
 
-    // Handle quiz submissions
-    public function handleSubmission(Collection $input): mixed;
+
+    /**
+     * Handle quiz submissions
+     *
+     * @param array $input
+     * @return mixed
+     */
+    public function handleSubmission(array $input): mixed;
 }

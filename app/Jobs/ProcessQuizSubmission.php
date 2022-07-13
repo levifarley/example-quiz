@@ -2,6 +2,7 @@
 
 namespace App\Jobs;
 
+use App\Interfaces\QuizServiceInterface;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
@@ -15,20 +16,18 @@ class ProcessQuizSubmission implements ShouldQueue
     /**
      * Create a new job instance.
      *
-     * @return void
+     * @param array $data
      */
-    public function __construct()
-    {
-        //
-    }
+    public function __construct(protected array $data) {}
 
     /**
      * Execute the job.
      *
-     * @return void
+     * @param QuizServiceInterface $quizService
+     * @return mixed
      */
-    public function handle()
+    public function handle(QuizServiceInterface $quizService): mixed
     {
-        //
+        return $quizService->handleSubmission($this->data);
     }
 }
