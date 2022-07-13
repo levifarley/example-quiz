@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Http\Controllers;
 
 use App\Interfaces\QuizServiceInterface;
+use App\Jobs\ProcessQuizSubmission;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
@@ -43,8 +44,8 @@ class QuizController extends Controller
         ]);
 
         // TODO: Broadcast model event and send result back to the front-end after submission is processed
-        //ProcessQuizSubmission::dispatch($validatedData); // For now just process immediately
-        $this->quizService->handleSubmission($validatedData);
+        ProcessQuizSubmission::dispatch($validatedData)->afterResponse(); // For now just process immediately
+
         return response('Accepted', 202);
     }
 }

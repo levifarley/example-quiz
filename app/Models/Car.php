@@ -48,6 +48,7 @@ class Car extends Model
             'id',
             'id',
             'cars'
-        );
+        )
+        ->withTimestamps();
     }
 }

@@ -31,24 +31,24 @@ class CarQuizService implements QuizServiceInterface
      */
     public function handleSubmission(array $input): mixed
     {
-        $car = Car::find($input['color']);
+        // Get the car model
+        $car = Car::find($input['car']);
 
+        // Translate input to required data for insert
         $data = collect($input)
             ->flatMap(function () use ($input, $car) {
                 return [
                     'manufacturer_id' => $input['manufacturer'],
                     'model' => $car->get('model')->last()->model,
-                    'name' => Color::find($input['car'])->get('name')->last()->name
+                    'name' => Color::find($input['color'])->get('name')->last()->name,
                 ];
             })
             ->toArray();
 
         // Log submission
-        Log::info('New car quiz submission', $input);
+        Log::info('New car quiz submission', $data);
 
-        //dd(CarQuizSubmission::create($data));
-
-        // TODO: Save to database - use CarQuizSubmission
+        // Insert submission into database
         return $car->colors()->attach($input['color']);
     }
 

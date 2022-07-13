@@ -30,6 +30,7 @@ class Color extends Model
             'id',
             'id',
             'colors'
-        );
+        )
+        ->withTimestamps();
     }
 }
