@@ -1,17 +1,15 @@
 <?php
 
-use App\Models\CarQuizSubmission;
 use App\Services\CarQuizService;
 
 beforeEach(function () {
-   // Setup test data with factories
-    $this->carQuizService = new CarQuizService(new CarQuizSubmission());
+    $this->service = new CarQuizService();
 });
 
 it('builds data for display', function () {
-    expect($this->carQuizService->buildDataForDisplay())->toBeCollection();
+    expect($this->service->buildDataForDisplay())->toBeCollection(); // TODO:
 });
 
 it('handles quiz submissions', function () {
-    // TODO:
+    //expect($this->service->handleSubmission([]))->toBeCollection(); // TODO:
 });

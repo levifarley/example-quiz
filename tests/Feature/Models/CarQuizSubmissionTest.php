@@ -25,7 +25,6 @@ beforeEach(function () {
             'model' => $this->carModelName
         ])
         ->create();
-
 });
 
 it('has a selected car', function () {

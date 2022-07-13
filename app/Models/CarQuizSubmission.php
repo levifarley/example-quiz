@@ -49,7 +49,7 @@ class CarQuizSubmission extends Model
 
     public function getMostPopularCarAndColor()
     {
-        //return $this->getRelations(); TODO:
+        // TODO:
     }
 
     public function getMostPopularCar()

@@ -20,8 +20,8 @@ return new class extends Migration
     {
         Schema::create('car_quiz_submissions', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('car_id')->constrained()->onDelete('cascade');
-            $table->foreignId('color_id')->constrained()->onDelete('cascade');
+            $table->foreignId('car_id')->constrained();
+            $table->foreignId('color_id')->constrained();
             $table->timestamps();
             $table->softDeletes();
         });

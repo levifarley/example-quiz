@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\Http\Controllers;
 
 use App\Interfaces\QuizServiceInterface;
-use App\Jobs\ProcessQuizSubmission;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
@@ -36,15 +35,16 @@ class QuizController extends Controller
      */
     public function submit(Request $request): Response
     {
-        // TODO: Use custom form requests for multiple quiz types?
+        // TODO: Use custom form requests for multiple quiz types
         $validatedData = $request->validate([
-            'car_id' => 'required|integer',
-            'color_id' => 'required|integer'
+            'manufacturer' => 'required|integer',
+            'car' => 'required|integer',
+            'color' => 'required|integer'
         ]);
 
         // TODO: Broadcast model event and send result back to the front-end after submission is processed
-        ProcessQuizSubmission::dispatch($validatedData); // For now just process immediately
-
+        //ProcessQuizSubmission::dispatch($validatedData); // For now just process immediately
+        $this->quizService->handleSubmission($validatedData);
         return response('Accepted', 202);
     }
 }
