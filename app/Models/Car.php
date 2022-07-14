@@ -42,7 +42,7 @@ class Car extends Model
     {
         return $this->belongsToMany(
             Color::class,
-            CarQuizSubmission::class,
+            'car_quiz_submissions',
             'car_id',
             'color_id',
             'id',

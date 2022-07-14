@@ -12,15 +12,17 @@ beforeEach(function () {
     $this->colorName = 'Black';
 
     // Create test model
-    Color::factory()
-        ->has(Car::factory()
-            ->for(Manufacturer::factory()->state([
-                'name' => $this->manufacturerName,
-                'tag' => $this->manufacturerTag
-            ]))
+    $this->color = Color::factory()
+        ->has(
+            Car::factory()->for(
+                Manufacturer::factory()->state([
+                    'name' => $this->manufacturerName,
+                    'tag' => $this->manufacturerTag
+                ])
+            )
             ->state([
-                'model' => $this->carModelName
-            ])
+                'model' => $this->carModelName,
+            ]),
         )
         ->create([
             'name' => $this->colorName
@@ -29,6 +31,5 @@ beforeEach(function () {
 
 it('get cars that can be in a color', function () {
     // Test many-to-many relationship
-    $this->assertEquals($this->carModelName, Color::all()->last()->cars->last()->model);
+    $this->assertEquals($this->carModelName, $this->color->all()->last()->car->last()->model);
 });
-

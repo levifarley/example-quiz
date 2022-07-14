@@ -3,7 +3,7 @@
 use App\Models\Car;
 use App\Models\Color;
 use App\Models\Manufacturer;
-use App\Services\CarQuizService;
+use Facades\App\Services\CarQuizService;
 
 beforeEach(function () {
     // Set test parameters
@@ -14,7 +14,7 @@ beforeEach(function () {
 
     // Create test model
     $car = Car::factory()
-        ->hasAttached(Color::factory()->state([
+        ->has(Color::factory()->state([
             'name' => $this->colorName
         ]))
         ->for(Manufacturer::factory()->state([
@@ -32,14 +32,12 @@ beforeEach(function () {
         'car' => $car->id,
         'color' => $car->colors()->get()->last()->id
     ];
-
-    $this->carQuizService = new CarQuizService();// TODO: clean this up?
 });
 
 it('builds data for display', function () {
-    expect($this->carQuizService->buildDataForDisplay())->toBeCollection();
+    expect(CarQuizService::buildDataForDisplay())->toBeCollection();
 });
 
 it('handles quiz submissions', function () {
-    expect($this->carQuizService->handleSubmission($this->input))->toBeNull();
+    expect(CarQuizService::handleSubmission($this->input))->toBeTrue();
 });

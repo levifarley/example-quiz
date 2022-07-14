@@ -23,7 +23,7 @@ class Manufacturer extends Model
      *
      * @return HasMany
      */
-    public function cars(): HasMany
+    public function car(): HasMany
     {
         return $this->hasMany(
             Car::class,

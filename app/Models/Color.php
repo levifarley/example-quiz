@@ -20,16 +20,16 @@ class Color extends Model
      *
      * @return BelongsToMany
      */
-    public function cars(): BelongsToMany
+    public function car(): BelongsToMany
     {
         return $this->belongsToMany(
             Car::class,
-            CarQuizSubmission::class,
+            'car_quiz_submissions',
             'color_id',
             'car_id',
             'id',
             'id',
-            'colors'
+            'color'
         )
         ->withTimestamps();
     }

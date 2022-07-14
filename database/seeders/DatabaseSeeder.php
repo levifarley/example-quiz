@@ -19,8 +19,7 @@ class DatabaseSeeder extends Seeder
         $seeders = [
             ManufacturerSeeder::class,
             CarSeeder::class,
-            ColorSeeder::class,
-            CarQuizSubmissionSeeder::class
+            ColorSeeder::class
         ];
 
         // Populate required example data
