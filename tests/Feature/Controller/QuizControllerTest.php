@@ -10,15 +10,9 @@ beforeEach(function () {
     $this->carModelName = 'Colorado';
     $this->manufacturerTag = 'domestic';
     $this->colorName = 'Black';
-});
 
-it('has an index page', function () {
-    $this->get('/')->assertStatus(200);
-});
-
-it('submits quiz input', function () {
     // Setup test models
-    Car::factory()
+    $car = Car::factory()
         ->hasAttached(Color::factory()->state([
             'name' => $this->colorName
         ]))
@@ -32,11 +26,17 @@ it('submits quiz input', function () {
         ->create();
 
     // Set test data
-    $input = [
-        'manufacturer' => 1,
-        'car' => 1,
-        'color' => 1
+    $this->input = [
+        'manufacturer' => $car->manufacturer()->get()->last()->id,
+        'car' => $car->id,
+        'color' => $car->colors()->get()->last()->id
     ];
+});
 
-    $this->post('/api/submit', $input)->assertStatus(202);
+it('has an index page', function () {
+    $this->get('/')->assertStatus(200);
+});
+
+it('submits quiz input', function () {
+    $this->post('/api/submit', $this->input)->assertStatus(202);
 });

@@ -36,4 +36,3 @@ it('has a selected color', function () {
     // Test many-to-many relationship
     $this->assertEquals($this->colorName, CarQuizSubmission::all()->last()->color->name);
 });
-

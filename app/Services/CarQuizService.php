@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace App\Services;
 
 use App\Interfaces\QuizServiceInterface;
+use App\Models\Car;
 use App\Models\Color;
-use Facades\App\Models\Car;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Log;
 
@@ -31,6 +31,8 @@ class CarQuizService implements QuizServiceInterface
      */
     public function handleSubmission(array $input): mixed
     {
+        //$inputCollection?
+
         // Get the car model
         $car = Car::find($input['car']);
 
@@ -48,7 +50,7 @@ class CarQuizService implements QuizServiceInterface
         // Log submission
         Log::info('New car quiz submission', $data);
 
-        // Insert submission into database
+        // Insert new submission record into database
         return $car->colors()->attach($input['color']);
     }
 
