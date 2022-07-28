@@ -2,8 +2,6 @@ Example Quiz
 =======
 **PHP** 8 | **Laravel** 9 | **Bootstrap** 5
 
-_A simple and modern example quiz built to demonstrate Eloquent model relationships understanding and general Laravel competency._
-
 ## Prerequisites
 You must have Docker installed on your machine
 
