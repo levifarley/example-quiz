@@ -5,12 +5,21 @@ Example Quiz
 _A simple and modern example quiz built to demonstrate Eloquent model relationships understanding and general Laravel competency._
 
 ## Prerequisites
-You must have Docker Compose installed to run Laravel Sail
+You must have Docker installed on your machine
 
 ## Installation
 Copy the environment file: `cp .env.example .env`
 
 ```bash
+# Install Laravel Sail dependencies
+docker run --rm \
+    -u "$(id -u):$(id -g)" \
+    -v $(pwd):/var/www/html \
+    -w /var/www/html \
+    laravelsail/php81-composer:latest \
+    composer install --ignore-platform-reqs
+
+# Start/setup application
 ./vendor/bin/sail up -d
 ./vendor/bin/sail artisan key:generate
 ./vendor/bin/sail artisan migrate --seed
