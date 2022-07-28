@@ -11,7 +11,8 @@ You must have Docker Compose installed to run Laravel Sail
 Copy the environment file: `cp .env.example .env`
 
 ```bash
-./vendor/bin/sail up
+./vendor/bin/sail up -d
+./vendor/bin/sail artisan key:generate
 ./vendor/bin/sail artisan migrate --seed
 ```
 
