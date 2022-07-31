@@ -4,7 +4,6 @@ use App\Models\Car;
 use App\Models\CarQuizSubmission;
 use App\Models\Color;
 use App\Models\Manufacturer;
-use App\Services\CarQuizService;
 
 beforeEach(function () {
     // Set test parameters
@@ -13,9 +12,9 @@ beforeEach(function () {
     $this->manufacturerTag = 'domestic';
     $this->colorName = 'Black';
 
-    // Create test data
-    $car = Car::factory()
-        ->has(Color::factory()->state([
+    // Create test model
+    Car::factory()
+        ->hasAttached(Color::factory()->state([
             'name' => $this->colorName
         ]))
         ->for(Manufacturer::factory()->state([
@@ -26,22 +25,15 @@ beforeEach(function () {
             'model' => $this->carModelName
         ])
         ->create();
-
-    // Set test input data
-    $this->input = [
-        'car' => $car->id,
-        'color' => $car->colors()->get()->last()->id
-    ];
-
-    // Instantiate service to test
-    $this->service = new CarQuizService(new CarQuizSubmission);
 });
 
-it('builds data for display', function () {
-    expect($this->service->buildDataForDisplay())->toBeCollection();
+it('has a selected car', function () {
+    // Test one-to-many relationship
+    $this->assertEquals($this->carModelName, CarQuizSubmission::all()->last()->car->model);
 });
 
-it('handles quiz submissions', function () {
-    $this->assertIsInt($this->service->handleSubmission($this->input));
+it('has a selected color', function () {
+    // Test many-to-many relationship
+    $this->assertEquals($this->colorName, CarQuizSubmission::all()->last()->color->name);
 });
 

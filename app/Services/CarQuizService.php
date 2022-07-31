@@ -13,6 +13,8 @@ use Illuminate\Support\Facades\Log;
 
 class CarQuizService implements QuizServiceInterface
 {
+    public function __construct(protected $model) {}
+
     /**
      * Build the required data for a quiz to be displayed
      *
@@ -39,16 +41,11 @@ class CarQuizService implements QuizServiceInterface
      */
     public function handleSubmission(array $input): mixed
     {
-        // Get the car model
-        $car = Car::find($input['car']);
-
-        // Translate input to required data for insert
+        // Format input data for insert
         $data = collect($input)
             ->flatMap(fn() => [
-                'manufacturer_id' => $input['manufacturer'],
-                'model' => $car->get('model')->last()->model,
-                'name' => Color::find($input['color'])->get('name')->last()->name,
-                'submission_type' => 'submission'
+                'car_id' => $input['car'],
+                'color_id' => $input['color']
             ])
             ->toArray();
 
@@ -56,7 +53,7 @@ class CarQuizService implements QuizServiceInterface
         Log::info('New car quiz submission', $data);
 
         // Insert new submission record into database
-        return $car->save();
+        return $this->model->create($data)->id;
     }
 
     protected function getMostPopularCarAndColor() {} // TODO:

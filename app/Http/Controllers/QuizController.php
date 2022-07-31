@@ -31,7 +31,6 @@ class QuizController extends Controller
     {
         // TODO: Use custom form requests to handle validation for multiple quiz types
         $validatedData = $request->validate([
-            'manufacturer' => 'required|integer',
             'car' => 'required|integer',
             'color' => 'required|integer'
         ]);

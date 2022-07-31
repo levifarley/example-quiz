@@ -3,7 +3,7 @@ Example Quiz
 **PHP** 8 | **Laravel** 9 | **Bootstrap** 5
 
 ## Prerequisites
-You must have Docker installed on your machine
+You must have [Docker](https://www.docker.com/get-started) installed on your machine
 
 ## Installation
 Copy the environment file: `cp .env.example .env`
