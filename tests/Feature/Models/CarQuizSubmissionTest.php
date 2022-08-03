@@ -12,7 +12,7 @@ beforeEach(function () {
     $this->manufacturerTag = 'domestic';
     $this->colorName = 'Black';
 
-    // Create test model
+    // Create test data
     Car::factory()
         ->hasAttached(Color::factory()->state([
             'name' => $this->colorName

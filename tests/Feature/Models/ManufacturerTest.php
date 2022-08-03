@@ -28,5 +28,5 @@ beforeEach(function () {
 
 it('gets a manufacturer\'s cars', function () {
     // Test one-to-many relationship
-    $this->assertEquals($this->carModelName, Manufacturer::all()->last()->car->last()->model);
+    $this->assertEquals($this->carModelName, Manufacturer::all()->last()->cars->last()->model);
 });

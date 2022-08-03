@@ -11,6 +11,29 @@ use Illuminate\Database\Eloquent\Factories\Factory;
  */
 class ManufacturerFactory extends Factory
 {
+    protected array $manufacturers = [
+        [
+            'name' => 'Chevrolet',
+            'tag' => 'domestic'
+        ],
+        [
+            'name' => 'Ford',
+            'tag' => 'domestic'
+        ],
+        [
+            'name' => 'Toyota',
+            'tag' => 'import'
+        ],
+        [
+            'name' => 'Honda',
+            'tag' => 'import'
+        ],
+        [
+            'name' => 'Volkswagen',
+            'tag' => 'euro'
+        ]
+    ];
+
     /**
      * Define the model's default state.
      *
@@ -18,29 +41,16 @@ class ManufacturerFactory extends Factory
      */
     public function definition(): array
     {
-        $manufacturers = [
-            [
-                'name' => 'Chevrolet',
-                'tag' => 'domestic'
-            ],
-            [
-                'name' => 'Ford',
-                'tag' => 'domestic'
-            ],
-            [
-                'name' => 'Toyota',
-                'tag' => 'import'
-            ],
-            [
-                'name' => 'Honda',
-                'tag' => 'import'
-            ],
-            [
-                'name' => 'Volkswagen',
-                'tag' => 'euro'
-            ],
-        ];
+        return fake()->unique()->randomElement($this->manufacturers);
+    }
 
-        return fake()->unique()->randomElement($manufacturers);
+    /**
+     * Get manufacturers
+     *
+     * @return array
+     */
+    public function getManufacturers(): array
+    {
+        return $this->manufacturers;
     }
 }

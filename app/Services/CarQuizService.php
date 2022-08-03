@@ -25,11 +25,11 @@ class CarQuizService implements QuizServiceInterface
         // Select a manufacturer => car => color => submit => message;
         return collect([
             ['question' => 'If you were going on a vacation, what car would you choose?'],
-            ['Select a manufacturer' => Manufacturer::with('car')->get()->pluck('name', 'id')],
+            ['Select a manufacturer' => Manufacturer::with('cars')->get()->pluck('name', 'id')],
             ['Select a car' => Car::all()->pluck('model', 'id')], // TODO: Reduce cars based on manufacturer relationship
             ['Select a color' => Color::pluck('name', 'id')],
             ['submit' => route('submit')],
-            ['message' => 'Thank you for your submission.']
+            ['response' => 'Thank you for your submission.']
         ]);
     }
 

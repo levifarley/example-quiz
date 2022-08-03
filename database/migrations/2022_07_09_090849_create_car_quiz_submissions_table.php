@@ -19,10 +19,11 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('car_quiz_submissions', function (Blueprint $table) {
-            $table->foreignId('car_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
-            $table->foreignId('color_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
-            $table->primary(['car_id', 'color_id']);
+            $table->id();
+            $table->foreignId('car_id')->constrained();
+            $table->foreignId('color_id')->constrained();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
