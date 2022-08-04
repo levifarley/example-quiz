@@ -21,7 +21,7 @@ class ManufacturerSeeder extends Seeder
         // We want to preserve the order of the manufacturers
         ($factory = Manufacturer::factory())
             ->count(5)
-            ->sequence(fn ($sequence) => $factory->getManufacturers()[$sequence->index])
+            ->sequence(fn($sequence) => $factory->getManufacturers()[$sequence->index])
             ->create();
     }
 }
