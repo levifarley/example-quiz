@@ -31,5 +31,5 @@ beforeEach(function () {
 
 it('get cars that can be in a color', function () {
     // Test many-to-many relationship
-    $this->assertEquals($this->carModelName, $this->color->all()->last()->car->last()->model);
+    $this->assertEquals($this->carModelName, $this->color->all()->last()->cars->last()->model);
 });

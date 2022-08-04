@@ -7,6 +7,10 @@
                 @elseif($label)
                     <p>{{ $options }}</p>
                 @endIf
+            @elseif(true === false) {{-- 'TODO: Handle if individual option value is a collection instead of string, set data attributes to pass data to jQuery script for manufacturer => cars options reduction/ajax submission --}}
+                @if($option instanceof \Illuminate\Support\Collection)
+                    {{ dd($options->flatten()) }}
+                @endif
             @else
                 <select>
                     <option value="">{{ $label }}</option>

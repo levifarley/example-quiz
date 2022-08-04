@@ -20,7 +20,7 @@ class Color extends Model
      *
      * @return BelongsToMany
      */
-    public function car(): BelongsToMany
+    public function cars(): BelongsToMany
     {
         return $this->belongsToMany(
             Car::class,
@@ -29,7 +29,7 @@ class Color extends Model
             'car_id',
             'id',
             'id',
-            'color'
+            'colors'
         )
         ->withTimestamps();
     }

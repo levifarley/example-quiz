@@ -23,13 +23,14 @@ class CarQuizService implements QuizServiceInterface
     public function buildDataForDisplay(): Collection
     {
         $manufacturers = Manufacturer::with('cars', 'cars.colors')->get();
-//dd($manufacturers);
+        //dd($manufacturers);
         $steps = [
             // Select a manufacturer => car => color => submit => response;
             ['question' => 'If you were going on a vacation, what car would you choose?'],
             ['Select a manufacturer' => $manufacturers->pluck('name', 'id')],
-            ['Select a car' => $manufacturers->map(fn($manufacturer) => [$manufacturer->id => $manufacturer->cars->pluck('model', 'id')])],
-            ['Select a color' => Color::pluck('name', 'id')], // TODO: Pull colors relationship data from manufacturers
+            ['Select a car' => \App\Models\Car::all()->pluck('model', 'id')],
+            //['Select a car' => $manufacturers->mapWithKeys(fn($manufacturer) => [$manufacturer->id => $manufacturer->cars->pluck('model', 'id')])], TODO: Fix blade
+            ['Select a color' => Color::pluck('name', 'id')], // Get all colors
             ['submit' => route('submit')],
             ['response' => 'Thank you for your submission.']
         ];
