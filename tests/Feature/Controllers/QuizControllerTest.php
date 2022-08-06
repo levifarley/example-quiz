@@ -33,10 +33,6 @@ beforeEach(function () {
     ];
 });
 
-it('has an index page', function () {
-    $this->get('/')->assertStatus(200);
-});
-
 it('submits quiz input', function () {
     $this->post('/api/submit', $this->input)->assertStatus(202);
 });

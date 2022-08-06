@@ -9,7 +9,7 @@ You must have [Docker](https://www.docker.com/get-started) installed on your mac
 Copy the environment file: `cp .env.example .env`
 
 ```bash
-# Install Laravel Sail dependencies
+# Install Laravel Sail/dependencies
 docker run --rm \
     -u "$(id -u):$(id -g)" \
     -v $(pwd):/var/www/html \

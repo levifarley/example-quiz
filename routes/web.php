@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\QuizController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,6 +13,4 @@ use App\Http\Controllers\QuizController;
 |
 */
 
-Route::controller(QuizController::class)->group(function () {
-    Route::get('/', 'index');
-});
+Route::view('/', 'quiz')->name('quiz');

@@ -28,12 +28,12 @@ beforeEach(function () {
 });
 
 it('has a selected car', function () {
-    // Test one-to-many relationship
+    // Test one-to-one relationship
     $this->assertEquals($this->carModelName, CarQuizSubmission::all()->last()->car->model);
 });
 
 it('has a selected color', function () {
-    // Test many-to-many relationship
+    // Test one-to-one relationship
     $this->assertEquals($this->colorName, CarQuizSubmission::all()->last()->color->name);
 });
 
