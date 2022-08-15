@@ -21,4 +21,5 @@
             @endif
         @endforeach
     @endforeach
+    {{-- TODO: Add hidden quiz_type field --}}
 </form>

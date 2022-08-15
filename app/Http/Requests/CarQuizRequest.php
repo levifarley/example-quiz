@@ -25,9 +25,6 @@ class CarQuizRequest extends FormRequest
      */
     public function rules(): array
     {
-        return [
-            'car' => 'required|integer',
-            'color' => 'required|integer'
-        ];
+        return config('quizzes.quiz_types.car.validation_rules');
     }
 }

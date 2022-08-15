@@ -27,10 +27,14 @@ beforeEach(function () {
 
     // Set test data
     $this->input = [
-        'manufacturer' => $car->manufacturer()->get()->last()->id,
+        'quiz_type' => 'car',
         'car' => $car->id,
         'color' => $car->colors()->get()->last()->id
     ];
+});
+
+it('has an index page', function () {
+    $this->get('/')->assertStatus(200);
 });
 
 it('submits quiz input', function () {
